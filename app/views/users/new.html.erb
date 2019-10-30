@@ -1,0 +1,57 @@
+<div class="d-flex w-100 justify-content-center align-items-center">
+  <div class="w-25 text-center">
+    <h2 class="d-inline-block">Crear una cuenta</h2>
+    <div class="bg-light rounded-lg p-5 text-left">
+      <%= form_for(@user) do |f| %>
+        <%= render "devise/shared/error_messages", resource: @user %>
+
+        <div class="form-group">
+          <%= f.label :first_name, 'Nombre(s)' %><br />
+          <%= f.text_field :first_name, autofocus: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :last_name, 'Apellido(s)' %><br />
+          <%= f.text_field :last_name, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :email, 'E-mail' %><br />
+          <%= f.email_field :email, autocomplete: "email", class: 'form-control' %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :password, 'Contraseña' %><br />
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> caracteres mínimos)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :password_confirmation, 'Confirmar contraseña' %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :phone, 'Teléfono' %><br />
+          <%= f.number_field :phone, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :sex, 'Sexo' %><br />
+          <%= f.select(:sex, [['Femenino', 'female'], ['Masculino', 'male']], {include_blank: '-- Selecciona --'}, { class:'form-control' }) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :user_type, 'Tipo de Cuenta' %><br />
+          <%= f.select(:user_type, [['Cliente', 'client'], ['Agente de Limpieza', 'agent']], {include_blank: '-- Selecciona --'}, { class:'form-control' }) %>
+        </div>
+      
+        <div class="actions text-right">
+          <%= f.submit "Registrar", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+      </div>
+  </div>
+</div>
