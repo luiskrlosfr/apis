@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :days, through: :availability
   has_many :simple_times, through: :availability
+  has_many :traits, through: :abilities
 
   def client?
     return self.user_type == 'client'

@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_175522) do
+ActiveRecord::Schema.define(version: 2019_11_24_180038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abilities", force: :cascade do |t|
+    t.string "level"
+    t.bigint "user_id", null: false
+    t.bigint "trait_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["trait_id"], name: "index_abilities_on_trait_id"
+    t.index ["user_id"], name: "index_abilities_on_user_id"
+  end
 
   create_table "availabilities", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -62,6 +72,8 @@ ActiveRecord::Schema.define(version: 2019_11_24_175522) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "abilities", "traits"
+  add_foreign_key "abilities", "users"
   add_foreign_key "availabilities", "days"
   add_foreign_key "availabilities", "simple_times"
   add_foreign_key "availabilities", "users"
