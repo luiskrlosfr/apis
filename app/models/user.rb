@@ -6,9 +6,14 @@ class User < ApplicationRecord
 
   has_many :days, through: :availability
   has_many :simple_times, through: :availability
-  has_many :traits, through: :abilities
+  has_many :abilities
+  belongs_to :region
 
   def client?
     return self.user_type == 'client'
+  end
+
+  def work_hours
+    return Availability.where(user: self)
   end
 end
