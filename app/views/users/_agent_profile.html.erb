@@ -3,7 +3,11 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
+                  <% if agent.sex == 'male' %>
+                    <img src="https://thumbs.dreamstime.com/b/portrait-man-cleaning-equipment-cleaning-house-30014330.jpg" class="rounded-circle w-75 h-75"/>
+                  <% else %>
                     <img src="https://www.ecofcleaners.com/wp-content/uploads/2019/03/ecof-cleaners-cleaning-lady-Vancover-BC.jpg" class="rounded-circle w-75 h-75"/>
+                  <% end %>
                 </div>
             </div>
             <div class="col-md-6">
@@ -26,21 +30,21 @@
                 </div>
             </div>
             <div class="col-md-2">
-              <button class="btn btn-primary">Agendar Cita</button>
+              <button class="btn btn-primary">+ Agendar Cita</button>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-work pt-4">
                   <p>Servicios</p>
-                  <% if @user.abilities.empty? %>
+                  <% if agent.abilities.empty? %>
                     <p class="text-muted">Aún no tiene servicios registrados</p>
                   <% else %>
-                    <% @user.abilities.each do |ab| %>
+                    <% agent.abilities.each do |ab| %>
                       <span class="badge badge-success"><%= ab.name %></span>
                     <% end %>
                   <% end %>
-                  <% if @user == current_user %>
+                  <% if agent == current_user %>
                     <%= link_to '+ Añadir Servicios', new_ability_path, class: 'btn btn-outline-info badge-pill mt-2' %>
                   <% end %>
                 </div>
@@ -48,15 +52,15 @@
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" >
-                      <div class="row">
+                      <div class="row mb-2">
                           <div class="col-md-4">
                             <label>Zona Laboral</label>
                           </div>
                           <div class="col-md-4">
-                            <p><%= @user.region.nil? ? 'N/D' : @user.region.name.nil? %></p>
+                            <span class="badge badge-warning"><%= agent.region.nil? ? 'N/D' : agent.region.name %></span>
                           </div>
                           <div class="col-md-4">
-                            <% if @user == current_user %>
+                            <% if agent == current_user %>
                               <%= link_to 'Editar', edit_user_path(current_user), class: 'btn btn-info' %>
                             <% end %>
                           </div>
@@ -66,10 +70,10 @@
                             <label>Horario Laboral</label>
                           </div>
                           <div class="col-md-4">
-                            <% if @user.work_hours.empty? %>
+                            <% if agent.work_hours.empty? %>
                               <span>N/D</span>
                             <% else %>
-                              <% @user.work_hours.each do |wh| %>
+                              <% agent.work_hours.each do |wh| %>
                                 <div class="row">
                                   <div class="col-md-6">
                                     <label><%= wh.day.name %></label>
@@ -82,41 +86,11 @@
                             <% end %>
                           </div>
                           <div class="col-md-4">
-                            <% if @user == current_user %>
+                            <% if agent == current_user %>
                               <%= link_to 'Editar', availability_path, class: 'btn btn-info' %>
                             <% end %>
                           </div>
                       </div>
-                      <div class="row">
-                          <div class="col-md-6">
-                              <label>Total Projects</label>
-                          </div>
-                          <div class="col-md-6">
-                              <p>230</p>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-6">
-                              <label>English Level</label>
-                          </div>
-                          <div class="col-md-6">
-                              <p>Expert</p>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-6">
-                              <label>Availability</label>
-                          </div>
-                          <div class="col-md-6">
-                              <p>6 months</p>
-                          </div>
-                      </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Your Bio</label><br/>
-                                <p>Your detail description</p>
-                            </div>
-                        </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                       <div class="row">
@@ -124,7 +98,7 @@
                             <label>Email</label>
                           </div>
                           <div class="col-md-6">
-                            <p><%= @user.email %></p>
+                            <p><%= agent.email %></p>
                           </div>
                       </div>
                       <div class="row">
@@ -132,7 +106,7 @@
                             <label>Teléfono</label>
                           </div>
                           <div class="col-md-6">
-                            <p><%= @user.phone %></p>
+                            <p><%= agent.phone %></p>
                           </div>
                       </div>
                       <div class="row">
