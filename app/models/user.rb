@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :days, through: :availability
+  has_many :simple_times, through: :availability
+
   def client?
     return self.user_type == 'client'
   end
