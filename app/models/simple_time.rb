@@ -1,0 +1,2 @@
+class SimpleTime < ApplicationRecord
+end
