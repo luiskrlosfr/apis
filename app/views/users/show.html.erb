@@ -1,0 +1,5 @@
+<% if @user.client? %>
+  <%= render 'users/client_profile', client: @user %>
+<% else %>
+  <%= render 'users/agent_profile', agent: @user %>
+<% end %>

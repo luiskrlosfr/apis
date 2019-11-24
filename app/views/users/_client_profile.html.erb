@@ -1,0 +1,143 @@
+<div class="container emp-profile">
+    <div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRRXcXlhwYBR9FDdUV7v4H4G7ROeTPZSj0uSxB0vFsqXQxnhjKx" class="rounded-circle w-75 h-75"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                            <h5>
+                              <%= "#{client.first_name.titleize} #{client.last_name.titleize}" %>
+                            </h5>
+                            <h6>
+                              <%= client.user_type.titleize %>
+                            </h6>
+                            <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <%= link_to 'Editar', edit_user_path(client), class: 'btn btn-primary' %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p>WORK LINK</p>
+                    <a href="">Website Link</a><br/>
+                    <a href="">Bootsnipp Profile</a><br/>
+                    <a href="">Bootply Profile</a>
+                    <p>SKILLS</p>
+                    <a href="">Web Designer</a><br/>
+                    <a href="">Web Developer</a><br/>
+                    <a href="">WordPress</a><br/>
+                    <a href="">WooCommerce</a><br/>
+                    <a href="">PHP, .Net</a><br/>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>E-mail</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <p><%= client.email %></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Teléfono</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <p><%= client.phone %></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                      <label>Sexo</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <p><%= client.sex.titleize %></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Cliente desde</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <p><%= client.created_at.strftime("%d / %m / %Y") %></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Profession</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Web Developer and Designer</p>
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Experience</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Hourly Rate</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Total Projects</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>230</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>English Level</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Availability</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>6 months</p>
+                                    </div>
+                                </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Your Bio</label><br/>
+                                <p>Your detail description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>           
+</div>

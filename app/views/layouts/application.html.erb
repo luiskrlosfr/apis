@@ -17,6 +17,9 @@
   </head>
 
   <body>
+    <% unless current_user.nil? %>
+      <%= render 'layouts/nav_bar' %>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
