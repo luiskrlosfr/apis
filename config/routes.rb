@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :users
   resources :abilities
   resources :availability
+  root to: "home#index"
 end

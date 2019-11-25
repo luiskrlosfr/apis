@@ -40,9 +40,11 @@
                   <% if agent.abilities.empty? %>
                     <p class="text-muted">Aún no tiene servicios registrados</p>
                   <% else %>
-                    <% agent.abilities.each do |ab| %>
-                      <span class="badge badge-success"><%= ab.name %></span>
-                    <% end %>
+                    <div>
+                      <% agent.abilities.each do |ab| %>
+                        <span class="badge badge-success"><%= ab.trait.name %></span>
+                      <% end %>
+                    </div>
                   <% end %>
                   <% if agent == current_user %>
                     <%= link_to '+ Añadir Servicios', new_ability_path, class: 'btn btn-outline-info badge-pill mt-2' %>

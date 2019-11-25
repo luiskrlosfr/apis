@@ -1,0 +1,35 @@
+<% if ability.persisted? %>
+  <h2>Editar servicio</h2>
+<% else %>
+  <h2>Añadir un servicio</h2>
+<% end %>
+
+<div class="d-flex w-100 h-100 justify-content-center">
+  <div class="w-50 h-50">
+    <%= form_for(ability) do |f| %>
+      <div class="form-row mb-4">
+        <div class="form-group col-md-6">
+          <h4>Servicio</h4>
+          <%= f.select :trait_id, traits_combo, {}, {class: "form-control"} %>
+        </div>
+        <div class="form-group col-md-6">
+          <h4>Nivel</h4>
+          <%= f.select :level, level_combo, {}, {class: "form-control"} %>
+        </div>
+      </div>
+
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <div class="form-row">
+        <% if false %>
+        <div class="form-group col-md-6">
+          <p class="text-muted text-justify">Al crear el permiso, el doctor podrá administrar toda la información del paciente seleccionado.</p>
+        </div>
+        <% end %>
+        <div class="form-group col-md-6">
+          <%= f.submit "Registrar", class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
