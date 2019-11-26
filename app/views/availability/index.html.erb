@@ -13,8 +13,8 @@
     <table class="table table-striped w-75">
       <thead>
         <tr>
-          <th scope="col">Día</th>
-          <th scope="col">Hora</th>
+          <th scope="col"><%= sort_link(@q, :day_name, 'Día', default_order: :desc) %></th>
+          <th scope="col"><%= sort_link(@q, :simple_time_hour, 'Hora', default_order: :desc) %></th>
           <th scope="col">Acciones</th>
         </tr>
       </thead>
@@ -31,3 +31,11 @@
   </div>
   <% end %>
 </div>
+
+<%= search_form_for(@q, url: availability_index_path, method: :get) do |f| %>
+
+  <%= f.label 'Día' %>
+  <%= f.search_field :day_name_eq %>
+
+  <%= f.submit %>
+<% end %>

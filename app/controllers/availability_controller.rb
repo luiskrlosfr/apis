@@ -1,6 +1,7 @@
 class AvailabilityController < ApplicationController
   def index 
-    @availabilities = Availability.all.where(user_id: current_user.id)
+    @q = Availability.ransack(params[:q])
+    @availabilities = @q.result.where(user_id: current_user.id)
   end
 
   def new
