@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_194421) do
+ActiveRecord::Schema.define(version: 2019_11_26_005937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 2019_11_24_194421) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["trait_id"], name: "index_abilities_on_trait_id"
     t.index ["user_id"], name: "index_abilities_on_user_id"
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.string "address"
+    t.bigint "agent_id"
+    t.bigint "client_id"
+    t.bigint "availability_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.date "schedule"
+    t.index ["agent_id"], name: "index_appointments_on_agent_id"
+    t.index ["availability_id"], name: "index_appointments_on_availability_id"
+    t.index ["client_id"], name: "index_appointments_on_client_id"
   end
 
   create_table "availabilities", force: :cascade do |t|
@@ -50,7 +63,7 @@ ActiveRecord::Schema.define(version: 2019_11_24_194421) do
   end
 
   create_table "simple_times", force: :cascade do |t|
-    t.time "hour"
+    t.string "hour"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -82,6 +95,9 @@ ActiveRecord::Schema.define(version: 2019_11_24_194421) do
 
   add_foreign_key "abilities", "traits"
   add_foreign_key "abilities", "users"
+  add_foreign_key "appointments", "availabilities"
+  add_foreign_key "appointments", "users", column: "agent_id"
+  add_foreign_key "appointments", "users", column: "client_id"
   add_foreign_key "availabilities", "days"
   add_foreign_key "availabilities", "simple_times"
   add_foreign_key "availabilities", "users"

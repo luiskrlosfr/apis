@@ -9,8 +9,14 @@ module ApplicationHelper
   end
 
   def traits_combo
-    swag = Trait.all.map {|t| [t.name, t.id]}
-    puts swag.inspect
-    swag
+    Trait.all.map {|t| [t.name, t.id]}
+  end
+
+  def hours_combo
+    SimpleTime.all.map {|st| [st.hour, st.id]}
+  end
+
+  def days_combo
+    Day.all.map {|d| [d.name.titleize, d.id]}
   end
 end

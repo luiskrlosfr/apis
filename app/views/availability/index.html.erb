@@ -1,0 +1,33 @@
+<h2>Horario Laboral</h2>
+
+<div class="w-100">
+  <div class="d-flex w-100 justify-content-center">
+    <div class="d-flex flex-row-reverse mb-2 w-75">
+      <%= link_to "+ Añadir Horario", new_availability_path, class: 'btn badge-pill btn-outline-primary mr-4' %>
+    </div>
+  </div>
+  <% if @availabilities.empty? %>
+    <h3 class="d-flex w-100 justify-content-center text-muted">No tienes horarios laborales registrados</h3>
+  <% else %>
+  <div class="d-flex w-100 justify-content-center">
+    <table class="table table-striped w-75">
+      <thead>
+        <tr>
+          <th scope="col">Día</th>
+          <th scope="col">Hora</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @availabilities.each do |a| %>
+          <tr>
+            <td><%= a.day.name.titleize %></td>
+            <td><%= a.simple_time.hour %></td>
+            <td><%= button_to "Eliminar", a, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar el permiso? El doctor autorizado ya no podrá acceder a la información de este paciente' }, class: 'btn btn-danger' %></td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+</div>
