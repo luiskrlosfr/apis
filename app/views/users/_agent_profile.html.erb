@@ -29,9 +29,11 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary">+ Agendar Cita</button>
-            </div>
+            <% if current_user.client? %>
+              <div class="col-md-2">
+                <%= link_to '+ Agendar Cita', new_appointment_path(agent_id: agent.id), class: 'btn btn-primary' %>
+              </div>
+            <% end %>
         </div>
         <div class="row">
             <div class="col-md-4">
