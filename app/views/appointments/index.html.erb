@@ -1,10 +1,6 @@
-<h2>Tus Citas Agendadas</h2>
-
 <div class="w-100">
   <div class="d-flex w-100 justify-content-center">
-    <div class="d-flex flex-row-reverse mb-2 w-75">
-      <%= link_to "+ Añadir Horario", new_availability_path, class: 'btn badge-pill btn-outline-primary mr-4' %>
-    </div>
+    <h2>Tus Citas Agendadas</h2>
   </div>
   <% if @appointments.empty? %>
     <h3 class="d-flex w-100 justify-content-center text-muted">No tienes citas agendadas</h3>
