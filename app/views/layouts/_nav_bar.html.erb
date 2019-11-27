@@ -2,14 +2,18 @@
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <%= link_to "Inicio", home_index_path, class: 'nav-link' %>
+        <%= link_to "Inicio", users_path, class: 'nav-link' %>
       </li>
-      <li class="nav-item">
-        <%= link_to "Perfil", current_user, class: 'nav-link'  %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Horario Laboral", availability_index_path, class: 'nav-link'  %>
-      </li>
+      <% if current_user.client? %>
+        <li class="nav-item">
+          <%= link_to "Perfil", current_user, class: 'nav-link'  %>
+        </li>
+      <% end %>
+      <% unless current_user.client? %>
+        <li class="nav-item">
+          <%= link_to "Horario Laboral", availability_index_path, class: 'nav-link'  %>
+        </li>
+      <% end %>
       <li class="nav-item">
         <%= link_to "Citas Agendadas", appointments_path, class: 'nav-link'  %>
       </li>

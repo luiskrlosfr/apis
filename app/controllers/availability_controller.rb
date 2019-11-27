@@ -1,4 +1,6 @@
 class AvailabilityController < ApplicationController
+  before_action :authenticate_client
+
   def index 
     @q = Availability.ransack(params[:q])
     @availabilities = @q.result.where(user_id: current_user.id)
@@ -49,5 +51,9 @@ class AvailabilityController < ApplicationController
 
   def availability_params
     params.require(:availability).permit(:simple_time_id, :user_id, :day_id )
+  end
+
+  def authenticate_client
+    redirect_to current_user if current_user.client?
   end
 end

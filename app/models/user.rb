@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :abilities
   has_many :client_appointments, class_name:'Appointment', foreign_key: 'client_id'
   has_many :agent_appointments, class_name:'Appointment', foreign_key: 'agent_id'
+  has_many :availabilities
 
   belongs_to :region
 
@@ -26,5 +27,13 @@ class User < ApplicationRecord
     else
       return Appointment.where(agent_id: self.id)
     end
+  end
+
+  def work_days_diff
+    return Availability.where(user: self).map {|a| a.day.name}.uniq
+  end
+
+  def work_hours_detail_diff
+    return Availability.where(user: self).map{|w| w.simple_time.hour}.uniq
   end
 end
