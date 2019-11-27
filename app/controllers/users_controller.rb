@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only:[:index, :show, :edit, :destroy]
   before_action :authenticate_client, only:[:index]
   def index
-    @agents = User.where(user_type: 'agent')
+    @q = User.ransack(params[:q])
+    @agents = @q.result(distinct: true).where(user_type: 'agent')
   end
 
   def new

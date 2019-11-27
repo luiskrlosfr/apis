@@ -1,6 +1,9 @@
-<div class="d-flex w-100 justify-content-center">
-  <div class="d-flex w-75 p-2">
-    <div class="d-flex w-100">
+<div class="d-inline-block w-75 p-2">
+  <div class="d-inline-block w-100">
+    <div class="d-inline-block w-100 text-center">
+      <h1>Agentes de limpieza disponibles</h1>
+    </div>
+    <div class="d-inline-block w-100 ">
       <% @agents.each do |agent| %>
         <div class="card w-25 mr-1">
           <div class="row no-gutters">
@@ -8,10 +11,8 @@
               <div class="w-100">
                 <img src="https://thumbs.dreamstime.com/b/portrait-man-cleaning-equipment-cleaning-house-30014330.jpg" class="w-100" alt="...">
               </div>
-              <div class="d-inline-blick text-center w-100 p-1">
-                <% agent.abilities.first(3).each do |ab| %>
-                  <span class="badge badge-success"><%= ab.trait.name %></span>
-                <% end %>
+              <div class="d-inline-block text-center w-100 pt-2">
+                <%= link_to 'Ir a Perfil', user_path(agent), class: 'btn btn-primary' %>
               </div>
             </div>
             <div class="col-md-8">
@@ -19,7 +20,9 @@
                 <h5 class="card-title"><%= "#{agent.first_name.titleize} #{agent.last_name.titleize}" %></h5>
                 <span class="badge badge-warning"><%= agent.region.nil? ? 'N/D' : agent.region.name %></span>
                 <p class="card-text">Trabaja <%= agent.work_days_diff.count %> días a la semana en <%= agent.work_hours_detail_diff.count %> horarios distintos. </p>
-                <%= link_to 'Ir a Perfil', user_path(agent), class: 'btn btn-primary' %>
+                <% agent.abilities.each do |ab| %>
+                  <span class="badge badge-success"><%= ab.trait.name %></span>
+                <% end %>
               </div>
             </div>
           </div>
@@ -27,7 +30,49 @@
       <% end %>
     </div>
   </div>
-  <div class="d-flex w-25">
-
-    </div>
+</div><div class="d-inline-block w-25 pr-2">
+  <div class="card w-100 mr-2">
+    <h5 class="card-header text-light bg-info">Filtros</h5>
+    <%= search_form_for @q do |f| %>
+      <div class="card-body">
+        <h5 class="card-title">Días</h5>
+        <p class="card-title">
+          <% days_combo.each do |day| %>
+            <%= check_box_tag('q[availabilities_day_id_eq_any][]', day.last ) %>
+            <%= day.first %>
+          <% end %>
+        </p>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Horarios</h5>
+        <p class="card-title">
+          <% hours_combo.each do |day| %>
+            <%= check_box_tag('q[availabilities_simple_time_id_eq_any][]', day.last ) %>
+            <%= day.first %>
+          <% end %>
+        </p>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Servicios</h5>
+        <p class="card-title">
+          <% traits_combo.each do |day| %>
+            <%= check_box_tag('q[abilities_trait_id_eq_any][]', day.last ) %>
+            <%= day.first %>
+          <% end %>
+        </p>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Zona</h5>
+        <p class="card-title">
+          <% regions_combo.each do |day| %>
+            <%= check_box_tag('q[region_id_eq_any][]', day.last ) %>
+            <%= day.first %>
+          <% end %>
+        </p>
+      </div>
+      <div class="card-body">
+        <%= f.submit 'Filtrar', class:'btn btn-info' %>
+      </div>
+    <% end %>
+  </div>
 </div>

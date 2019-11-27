@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :abilities
   has_many :client_appointments, class_name:'Appointment', foreign_key: 'client_id'
   has_many :agent_appointments, class_name:'Appointment', foreign_key: 'agent_id'
+  has_many :availabilities
 
   belongs_to :region
 
