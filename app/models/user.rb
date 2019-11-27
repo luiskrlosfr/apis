@@ -27,4 +27,12 @@ class User < ApplicationRecord
       return Appointment.where(agent_id: self.id)
     end
   end
+
+  def work_days_diff
+    return Availability.where(user: self).map {|a| a.day.name}.uniq
+  end
+
+  def work_hours_detail_diff
+    return Availability.where(user: self).map{|w| w.simple_time.hour}.uniq
+  end
 end

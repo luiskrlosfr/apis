@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only:[:index, :show, :edit, :destroy]
+  before_action :authenticate_client, only:[:index]
   def index
-    @user = current_user
+    @agents = User.where(user_type: 'agent')
   end
 
   def new
@@ -49,5 +50,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :phone, :sex, :email, :user_type, :region_id, :password, :password_confirmation)
+  end
+
+  def authenticate_client
+    redirect_to current_user unless current_user.client?
   end
 end
