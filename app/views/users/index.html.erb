@@ -4,7 +4,7 @@
       <div class="d-inline-block w-100 text-center">
         <h1>Agentes de limpieza disponibles</h1>
       </div>
-      <div class="row w-100 justify-content-center">
+      <div class="row w-100 justify-content-start pl-5">
         <% @agents.each do |agent| %>
           <div class="card w-25 mr-2 mb-2">
             <div class="row no-gutters">
@@ -36,10 +36,14 @@
       </div>
     </div>
   </div>
-  <div class="col-md-4 pr-2">
+  <div class="col-md-3 p-2">
     <div class="card w-100 mr-2">
       <h5 class="card-header text-light bg-info">Filtros</h5>
       <%= search_form_for @q do |f| %>
+        <div class="card-body">
+          <h5 class="card-title">Nombre y/o Apellido</h5>
+            <%= f.search_field :first_name_or_last_name_eq, class: 'form-control form-control-underlined', placeholder: "Escribe un nombre..." %>
+        </div>
         <div class="card-body">
           <h5 class="card-title">Días</h5>
           <p class="card-title">
